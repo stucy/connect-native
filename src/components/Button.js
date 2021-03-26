@@ -7,7 +7,6 @@ const Button = ({text, click}) => {
   const {colors} = useTheme();
 
   return (
-    <View>
         <Pressable onPress={click} style= {({ pressed }) => [
           {
             backgroundColor: pressed
@@ -23,7 +22,6 @@ const Button = ({text, click}) => {
         )}
             
         </Pressable>
-    </View>
   );
 }
 

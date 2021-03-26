@@ -6,19 +6,19 @@ import { useTheme } from '../contexts/ThemeContext';
 import Button from '../components/Button';
 import Input from '../components/Input';
 
-const Register = () => {
+const ChangePass = () => {
     const {colors} = useTheme();
 
-    const handleRegister = () => {
+    const handleChangePass = () => {
         
     }
 
     const styles = StyleSheet.create({
         container: {
-            flex: 1,
-            backgroundColor: colors.background,
-            padding: 25,
-          },
+          flex: 1,
+          backgroundColor: colors.background,
+          padding: 25,
+        },
         innerContainer: {
             flexGrow: 1,
             display: 'flex',
@@ -28,7 +28,7 @@ const Register = () => {
             textAlign: 'center',
             fontSize: 28,
             color: colors.primary_text,
-            marginBottom: 10
+            marginBottom: 25
         },
         text: {
             color: colors.primary_text,
@@ -46,24 +46,16 @@ const Register = () => {
         <View style={styles.container}>
 
             <View style={styles.innerContainer}>
-
-                <Text style={styles.heading}>Make an account</Text>
-
-                <Text style={styles.text}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquid.
-                </Text>
-
-                <Input placeholder="Username"/>
-                <Input placeholder="Email address" email/>
-                <Input placeholder="Password" password/>
-                <Input placeholder="Confirm Password" password/>
-                
+                <Text style={styles.heading}>Change Password</Text>
+                <Input placeholder="Old Password" password/>
+                <Input placeholder="New Password" password/>
+                <Input placeholder="Confirm New Password" password/>
             </View>
 
-            <Button text='Register' />
+            <Button text='Change' />
         </View>
     );
 }
 
 
-export default Register;
+export default ChangePass;

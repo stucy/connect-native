@@ -18,7 +18,11 @@ const Login = ({ navigation }) => {
             flex: 1,
             backgroundColor: colors.background,
             padding: 25,
-            justifyContent: 'center',
+          },
+        innerContainer: {
+            flexGrow: 1,
+            display: 'flex',
+            justifyContent: 'center'
         },
         heading: {
             textAlign: 'center',
@@ -42,21 +46,26 @@ const Login = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <Text style={styles.heading}>Let's sign you in.</Text>
+            
+            <View style={styles.innerContainer}>
+                <Text style={styles.heading}>Let's sign you in.</Text>
 
-            <Text style={styles.text}>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquid.
-            </Text>
+                <Text style={styles.text}>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquid.
+                </Text>
 
-            <Input placeholder="Email address" email/>
-            <Input placeholder="Password" password/>
+                <Input placeholder="Email address" email/>
+                <Input placeholder="Password" password/>
+            </View>
 
-            <Text style={styles.text}>
-                Don't have an account? 
-                <Text style={styles.link} onPress={() => navigation.navigate('Register')}>Register!</Text>
-            </Text>
+            <View>
+                <Text style={styles.text}>
+                    Don't have an account? 
+                    <Text style={styles.link} onPress={() => navigation.navigate('Register')}>Register!</Text>
+                </Text>
 
-            <Button text='Sign in' click={handleLogin}/>
+                <Button text='Sign in' click={handleLogin}/>
+            </View>
         </View>
     );
 

@@ -11,6 +11,7 @@ const Input = ({placeholder, password, email}) => {
     const styles = StyleSheet.create({
         input: {
             borderColor: colors.primary,
+            backgroundColor: colors.background_secondary,
             padding: 12,
             borderStyle: 'solid',
             borderWidth: 2,
