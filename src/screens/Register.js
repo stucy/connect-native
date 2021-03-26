@@ -1,14 +1,42 @@
 import React from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
+import { useTheme } from '../contexts/ThemeContext';
+
 import Button from '../components/Button';
 import Input from '../components/Input';
 
 const Register = () => {
+    const {colors} = useTheme();
 
-    const registerHandle = () => {
+    const handleRegister = () => {
         
     }
+
+    const styles = StyleSheet.create({
+        container: {
+          flex: 1,
+          backgroundColor: colors.background,
+          padding: 25,
+          justifyContent: 'center',
+        },
+        heading: {
+            textAlign: 'center',
+            fontSize: 28,
+            color: colors.primary_text,
+            marginBottom: 10
+        },
+        text: {
+            color: colors.primary_text,
+            textAlign: 'center',
+            fontSize: 16,
+            marginBottom: 15
+        },
+        link: {
+            color: colors.primary,
+            textDecorationLine: 'underline',
+        }
+    });
 
     return (
         <View style={styles.container}>
@@ -28,29 +56,5 @@ const Register = () => {
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#2B2B2B',
-      padding: 25,
-      justifyContent: 'center',
-    },
-    heading: {
-        textAlign: 'center',
-        fontSize: 28,
-        color: '#EFEFEF',
-        marginBottom: 10
-    },
-    text: {
-        color: '#EFEFEF',
-        textAlign: 'center',
-        fontSize: 16,
-        marginBottom: 15
-    },
-    link: {
-        color: '#3CAC68',
-        textDecorationLine: 'underline',
-    }
-});
 
 export default Register;
