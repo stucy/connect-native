@@ -80,12 +80,12 @@ const tabScreens = {
 const tabStack = createBottomTabNavigator(tabScreens, {
     tabBarOptions: {
         activeTintColor: darkColors.primary,
-        inactiveTintColor: darkColors.secondary_text,
+        inactiveTintColor: darkColors.inactive,
         showLabel: false,
         inactiveBackgroundColor: darkColors.background_secondary,
         activeBackgroundColor: darkColors.background_secondary,
         style: {
-            borderTopColor: darkColors.secondary
+            borderTopColor: darkColors.secondary,
         }
     },
     defaultNavigationOptions: ({ navigation }) => {

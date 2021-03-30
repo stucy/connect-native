@@ -8,6 +8,7 @@ export const lightIcons = {
 
 // Dark theme colors
 export const darkColors = {
+    inactive: '#000000',
     background: '#232323',
     background_secondary: '#2B2B2B',
     primary: '#3CAC68',
