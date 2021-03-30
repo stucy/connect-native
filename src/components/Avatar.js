@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, View, StyleSheet } from 'react-native';
+import { Image, View, StyleSheet, TouchableOpacity } from 'react-native';
 
 import { useTheme } from '../contexts/ThemeContext';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -38,9 +38,9 @@ const Avatar = ({editable, click}) => {
         <View style={styles.avatar_container}>
             <View>
                 <Image style={styles.avatar} source={require('../assets/default.png')} />
-                {editable &&  <View style={styles.icon}>
+                {editable &&  <TouchableOpacity style={styles.icon} onPress={click}>
                     <MaterialIcons name="edit" size={24} color={colors.primary_text} />
-                </View>}
+                </TouchableOpacity>}
             </View>
         </View>
     );
