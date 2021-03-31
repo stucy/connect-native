@@ -3,14 +3,14 @@ import { StyleSheet, TextInput, View, Pressable} from 'react-native';
 import { FontAwesome5 } from '@expo/vector-icons'; 
 import { useTheme } from '../contexts/ThemeContext';
 
-const Input = ({placeholder, password, email}) => {
+const Input = ({placeholder, password, email, change, error}) => {
     const [hidden, setHidden] = useState(password);
 
     const {colors} = useTheme();
 
     const styles = StyleSheet.create({
         input: {
-            borderColor: colors.primary,
+            borderColor: error ? colors.error : colors.primary,
             backgroundColor: colors.background_secondary,
             padding: 12,
             borderStyle: 'solid',
@@ -32,7 +32,8 @@ const Input = ({placeholder, password, email}) => {
 
     return (
         <View>
-            <TextInput  style={styles.input} placeholder={placeholder} 
+            <TextInput  style={styles.input} placeholder={placeholder} autoCapitalize='none'
+                        onChangeText={(text) => change(text)}
                         keyboardType={email ? 'email-address' : 'default'} 
                         placeholderTextColor ={colors.secondary_text} autoCompleteType='off' 
                         secureTextEntry={hidden} autoCompleteType='off' autoCorrect={false} 

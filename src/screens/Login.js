@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View} from 'react-native';
 
 import { useTheme } from '../contexts/ThemeContext';
@@ -7,10 +7,25 @@ import Button from '../components/Button';
 import Input from '../components/Input';
 
 const Login = ({ navigation }) => {
+    const [error, setError] = useState(null);
+    const [email, setEmail] = useState('');
+    const [pass, setPass] = useState('');
     const {colors} = useTheme();
 
-    const handleLogin = () => {
-        navigation.navigate('ChatsList');
+    useEffect(() => {
+        if (error) setError(null);
+
+    }, [email, pass])
+
+    // event handlers
+
+    const handleLogin = async () => {
+
+        // console.log({email, pass});
+
+        if(pass == '') navigation.navigate('ChatsList');
+
+        setError({login: 'Incorrect email or password!'});
     }
 
     const styles = StyleSheet.create({
@@ -42,6 +57,11 @@ const Login = ({ navigation }) => {
             textDecorationLine: 'underline',
             fontSize: 16,
         },
+        error: {
+            color: colors.error,
+            textAlign: 'center',
+            marginBottom: 5
+        }
     });
 
     return (
@@ -53,9 +73,9 @@ const Login = ({ navigation }) => {
                 <Text style={styles.text}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquid.
                 </Text>
-
-                <Input placeholder="Email address" email/>
-                <Input placeholder="Password" password/>
+                <Text style={styles.error}>{error?.login}</Text>
+                <Input placeholder="Email address" email change={setEmail} error={error?.login}/>
+                <Input placeholder="Password" password change={setPass} error={error?.login}/>
             </View>
 
             <View>
