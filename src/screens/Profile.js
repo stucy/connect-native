@@ -63,13 +63,12 @@ const Profile = ({navigation}) => {
             alignItems: 'center',
             padding: 10,
             position: 'absolute',
-            bottom: 0,
-            left: 0,
-            right: 0,
-            height: 100,
+            bottom: 10,
+            left: 25,
+            right: 25,
+            height: 90,
             backgroundColor: colors.inactive,
-            borderTopLeftRadius: 40,
-            borderTopRightRadius: 40
+            borderRadius: 20,
         },
        ...icons
     });
@@ -175,10 +174,10 @@ const Profile = ({navigation}) => {
                 <Animated.View style={[styles.change_avatar,
                     {transform: [{translateY: animate}]}]}>
                     <TouchableWithoutFeedback onPress={pickImage}>
-                        <Entypo name="images" size={40} color={colors.primary} />
+                        <Entypo name="images" size={46} color={colors.primary} />
                     </TouchableWithoutFeedback>
                     <TouchableWithoutFeedback onPress={takeImage}>
-                        <Entypo name="camera" size={40} color={colors.primary} />
+                        <Entypo name="camera" size={46} color={colors.primary} />
                     </TouchableWithoutFeedback>
                 </Animated.View>
 

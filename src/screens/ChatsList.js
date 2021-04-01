@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableWithoutFeedback, FlatList } from 'react-native';
+import { Text, View, StyleSheet, Image, TouchableWithoutFeedback, FlatList, ScrollView } from 'react-native';
+import GestureRecognizer from 'react-native-swipe-gestures';
+import Animated from 'react-native-reanimated'
 
 import Message from '../components/Message';
 
@@ -9,9 +11,23 @@ const ChatsList = ({navigation}) => {
     const [messages, setMessages] = useState([
         {id: '2', image: '../assets/default.png', name: 'Ники П.', message: 'Здр кп... кога ще играем майнкрафт', time: '11:47'},
         {id: '1', image: '../assets/default.png', name: 'Стоян Г.', message: 'Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайнаЗдр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна', time: '12:23'},
-        ])
+        {id: '10', image: '../assets/default.png', name: 'Ники П.', message: 'Здр кп... кога ще играем майнкрафт', time: '11:47'},
+        {id: '3', image: '../assets/default.png', name: 'Стоян Г.', message: 'Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайнаЗдр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна', time: '12:23'},
+        {id: '4', image: '../assets/default.png', name: 'Ники П.', message: 'Здр кп... кога ще играем майнкрафт', time: '11:47'},
+        {id: '5', image: '../assets/default.png', name: 'Стоян Г.', message: 'Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайнаЗдр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна', time: '12:23'},
+        {id: '6', image: '../assets/default.png', name: 'Ники П.', message: 'Здр кп... кога ще играем майнкрафт', time: '11:47'},
+        {id: '7', image: '../assets/default.png', name: 'Стоян Г.', message: 'Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайнаЗдр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна', time: '12:23'},
+        {id: '8', image: '../assets/default.png', name: 'Ники П.', message: 'Здр кп... кога ще играем майнкрафт', time: '11:47'},
+        {id: '9', image: '../assets/default.png', name: 'Стоян Г.', message: 'Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна Здр ко пр какво стана с дизайнаЗдр ко пр какво стана с дизайна Здр ко пр какво стана с дизайна', time: '12:23'},
+    ]);
+
+    const animateY = new Animated.Value(0);
 
     const {colors} = useTheme();
+
+    const HEADER_HIGHT = 150;
+    const headerY = Animated.interpolate(animateY,
+        {inputRange:[0, HEADER_HIGHT], outputRange: [0, -HEADER_HIGHT]})
 
     const styles = StyleSheet.create({
         container: {
@@ -25,7 +41,7 @@ const ChatsList = ({navigation}) => {
         },
         heading_container: {
             display: 'flex',
-            flex: 1,
+            height: HEADER_HIGHT ,
             justifyContent: 'center',
             alignItems: 'center'
         },
@@ -37,33 +53,36 @@ const ChatsList = ({navigation}) => {
             right: 20
         },
         chats_container: {
-            flex: 3,
+            height: '100%',
             backgroundColor: colors.background,
             borderTopLeftRadius: 40,
             borderTopRightRadius: 40,
             padding: 10,
-            paddingTop: 30
+            paddingTop: 30 
         }
     });
 
-    const renderMessage = ({item}) => <Message {...item} click={() => navigation.navigate('Chat')}/>;
+    const renderMessage = (item) => <Message {...item} key={item.id} click={() => navigation.navigate('Chat')}/>;
 
     return (
-        <View style={styles.container} >
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
-                <Image style={styles.avatar} source={require('../assets/default.png')} />
-            </TouchableWithoutFeedback>
-            <View style={styles.heading_container}>
+
+        <View style={[styles.container]} >
+            
+            <Animated.ScrollView  
+                style={[styles.container]}
+                scrollEventThrottle={16}
+                showsVerticalScrollIndicator={false}
+                onScroll={Animated.event([ { nativeEvent: { contentOffset: { y: animateY } } } ])}>
+            <Animated.View style={[styles.heading_container, {transform:[{translateY: headerY + 50}]}]}>
+                <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
+                    <Image style={styles.avatar} source={require('../assets/default.png')} />
+                </TouchableWithoutFeedback>
                 <Text style={styles.heading} >ChatsList</Text>
-            </View>
-            <View style={styles.chats_container}>
-                <FlatList
-                    data={messages}
-                    renderItem={renderMessage}
-                    keyExtractor={item => item.id}
-                    showsVerticalScrollIndicator={false}
-                />
-            </View>
+            </Animated.View>
+                <View style={styles.chats_container}>
+                    {messages.map(el => renderMessage(el))}
+                </View>
+            </Animated.ScrollView>
         </View>
     )
 }
