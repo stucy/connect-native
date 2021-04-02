@@ -74,7 +74,7 @@ const Login = ({ navigation }) => {
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, aliquid.
                 </Text>
                 <Text style={styles.error}>{error?.login}</Text>
-                <Input placeholder="Email address" email change={setEmail} error={error?.login}/>
+                <Input placeholder="Email address" email change={setEmail} error={error?.login} />
                 <Input placeholder="Password" password change={setPass} error={error?.login}/>
             </View>
 

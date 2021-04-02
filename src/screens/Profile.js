@@ -59,7 +59,7 @@ const Profile = ({navigation}) => {
         change_avatar: {
             display: 'flex',
             flexDirection: 'row',
-            justifyContent: 'space-evenly',
+            justifyContent: 'space-around',
             alignItems: 'center',
             padding: 10,
             position: 'absolute',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { TouchableWithoutFeedback, Keyboard } from 'react-native';
+import { TouchableWithoutFeedback, Keyboard, StatusBar } from 'react-native';
 
 import Navigator from './src/Navigator';
 import { ThemeProvider } from './src/contexts/ThemeContext';

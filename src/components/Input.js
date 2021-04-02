@@ -36,7 +36,7 @@ const Input = ({placeholder, password, email, change, error}) => {
                         onChangeText={(text) => change(text)}
                         keyboardType={email ? 'email-address' : 'default'} 
                         placeholderTextColor ={colors.secondary_text} autoCompleteType='off' 
-                        secureTextEntry={hidden} autoCompleteType='off' autoCorrect={false} 
+                        secureTextEntry={hidden} autoCorrect={false} 
             />
             
             {password && (<Pressable style={styles.icon} onPress={handleVisible}>

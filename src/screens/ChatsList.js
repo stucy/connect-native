@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Text, View, StyleSheet, Image, TouchableWithoutFeedback, FlatList, ScrollView } from 'react-native';
-import GestureRecognizer from 'react-native-swipe-gestures';
 import Animated from 'react-native-reanimated'
 
 import Message from '../components/Message';
@@ -54,11 +53,12 @@ const ChatsList = ({navigation}) => {
         },
         chats_container: {
             height: '100%',
+            // flex: 1,
             backgroundColor: colors.background,
             borderTopLeftRadius: 40,
             borderTopRightRadius: 40,
             padding: 10,
-            paddingTop: 30 
+            paddingTop: 30,
         }
     });
 
@@ -68,17 +68,18 @@ const ChatsList = ({navigation}) => {
 
         <View style={[styles.container]} >
             
-            <Animated.ScrollView  
-                style={[styles.container]}
+            <Animated.ScrollView
+                contentContainerStyle={{flexGrow: 1}}
                 scrollEventThrottle={16}
                 showsVerticalScrollIndicator={false}
                 onScroll={Animated.event([ { nativeEvent: { contentOffset: { y: animateY } } } ])}>
-            <Animated.View style={[styles.heading_container, {transform:[{translateY: headerY + 50}]}]}>
-                <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
-                    <Image style={styles.avatar} source={require('../assets/default.png')} />
-                </TouchableWithoutFeedback>
-                <Text style={styles.heading} >ChatsList</Text>
-            </Animated.View>
+
+                <Animated.View style={[styles.heading_container, {transform:[{translateY: headerY + 50}]}]}>
+                    <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
+                        <Image style={styles.avatar} source={require('../assets/default.png')} />
+                    </TouchableWithoutFeedback>
+                    <Text style={styles.heading} >ChatsList</Text>
+                </Animated.View>
                 <View style={styles.chats_container}>
                     {messages.map(el => renderMessage(el))}
                 </View>

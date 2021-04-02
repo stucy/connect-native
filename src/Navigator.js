@@ -47,7 +47,10 @@ const chatScreens = {
         }
     },
     Chat: {
-        screen: Chat
+        screen: Chat,
+        navigationOptions: {
+            headerShown: false
+        }
     },
     ChatSettings: {
         screen: ChatSettings
