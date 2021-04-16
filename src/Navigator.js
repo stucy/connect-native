@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
-import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
 import {darkColors} from './styles/colorThemes';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -12,9 +12,10 @@ import Register from './screens/Register';
 import ChatsList from './screens/ChatsList';
 import Chat from './screens/Chat';
 import ChatSettings from './screens/ChatSettings';
-import Friends from './screens/Friends';
+import FriendsList from './screens/FriendsList';
 import Profile from './screens/Profile';
 import ChangePass from './screens/ChangePass';
+import AddFriends from './screens/AddFriends';
 
 const defaultStackOptions = {
     defaultNavigationOptions: {
@@ -39,9 +40,52 @@ const authScreens = {
 
 const authStack = createStackNavigator(authScreens, defaultStackOptions);
 
-const chatScreens = {
+const tabScreens = {
     ChatsList: {
         screen: ChatsList,
+        navigationOptions: {
+            tabBarIcon: ({tintColor}) => <Ionicons name="chatbubbles" size={24} color={tintColor} />,
+        }
+    },
+    FriendsList: {
+        screen: FriendsList,
+        navigationOptions: {
+            tabBarIcon: ({tintColor}) => <FontAwesome5 name='users' size={24} color={tintColor} />,
+        }
+    },
+}
+
+const tabStack = createMaterialTopTabNavigator(tabScreens, {
+    swipeEnabled: true,
+    tabBarPosition: 'bottom',
+    tabBarOptions: {
+        activeTintColor: darkColors.primary,
+        inactiveTintColor: darkColors.inactive,
+        showLabel: false,
+        showIcon: true,
+        tabStyle: {
+            borderTopColor: darkColors.secondary,
+            backgroundColor: darkColors.background_secondary
+        },
+        iconStyle: {
+            width: 40
+        }
+    },
+    defaultNavigationOptions: ({ navigation }) => {
+        let tabBarVisible = true;
+        if (navigation.state.index > 0) {
+          tabBarVisible = false;
+        }
+      
+        return {
+          tabBarVisible,
+        };
+      }
+});
+
+const chatScreens = {
+    Main: {
+        screen: tabStack,
         navigationOptions: {
             headerShown: false
         }
@@ -60,53 +104,21 @@ const chatScreens = {
     },
     ChangePass: {
         screen: ChangePass
+    },
+    AddFriends: {
+        screen: AddFriends,
+        navigationOptions: {
+            headerShown: false
+        }
     }
 };
 
 const chatStack = createStackNavigator(chatScreens, defaultStackOptions);
 
-const tabScreens = {
-    ChatsList: {
-        screen: chatStack,
-        navigationOptions: {
-            tabBarIcon: ({tintColor}) => <Ionicons name="chatbubbles" size={24} color={tintColor} />,
-        }
-    },
-    Friends: {
-        screen: Friends,
-        navigationOptions: {
-            tabBarIcon: ({tintColor}) => <FontAwesome5 name='users' size={25} color={tintColor} />,
-        }
-    },
-}
-
-const tabStack = createBottomTabNavigator(tabScreens, {
-    tabBarOptions: {
-        activeTintColor: darkColors.primary,
-        inactiveTintColor: darkColors.inactive,
-        showLabel: false,
-        inactiveBackgroundColor: darkColors.background_secondary,
-        activeBackgroundColor: darkColors.background_secondary,
-        style: {
-            borderTopColor: darkColors.secondary,
-        }
-    },
-    defaultNavigationOptions: ({ navigation }) => {
-        let tabBarVisible = true;
-        if (navigation.state.index > 0) {
-          tabBarVisible = false;
-        }
-      
-        return {
-          tabBarVisible,
-        };
-      }
-});
-
 const rootNavigator = createSwitchNavigator(
     {
         Auth: authStack,
-        App: tabStack
+        App: chatStack
     },
     {
         initialRouteName: 'Auth',

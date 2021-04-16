@@ -49,7 +49,7 @@ const Chat = ({navigation}) => {
     return (
         <View style={styles.container} >
             <View style={styles.header}>
-                <AntDesign name="arrowleft" size={24} color={colors.primary_text} onPress={() => navigation.pop()}/>
+                <AntDesign name="arrowleft" size={24} color={colors.primary_text} onPress={() => navigation.goBack()}/>
                 <Text style={styles.heading} >Stoyan G.</Text>
                     <Entypo  name="dots-three-horizontal" size={24} color={colors.primary} onPress={() => navigation.navigate('ChatSettings')}/>
             </View>

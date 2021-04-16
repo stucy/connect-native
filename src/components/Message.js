@@ -20,8 +20,8 @@ const Message = ({image, name, message, time, id, click}) => {
             position: 'relative'
         },
         image: {
-            width: 50,
-            height: 50,
+            width: 60,
+            height: 60,
             margin: 5,
             marginRight: 10
         },

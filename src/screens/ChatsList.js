@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image, TouchableWithoutFeedback, FlatList, ScrollView } from 'react-native';
-import Animated from 'react-native-reanimated'
+import { Text, View, StyleSheet, Image, TouchableWithoutFeedback } from 'react-native';
+import Animated from 'react-native-reanimated';
 
 import Message from '../components/Message';
 
@@ -66,7 +66,7 @@ const ChatsList = ({navigation}) => {
 
     return (
 
-        <View style={[styles.container]} >
+        <View style={styles.container} >
             
             <Animated.ScrollView
                 contentContainerStyle={{flexGrow: 1}}
@@ -78,7 +78,7 @@ const ChatsList = ({navigation}) => {
                     <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
                         <Image style={styles.avatar} source={require('../assets/default.png')} />
                     </TouchableWithoutFeedback>
-                    <Text style={styles.heading} >ChatsList</Text>
+                    <Text style={styles.heading} >Messages</Text>
                 </Animated.View>
                 <View style={styles.chats_container}>
                     {messages.map(el => renderMessage(el))}
