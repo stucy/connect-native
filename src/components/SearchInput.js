@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 
 import { useTheme } from '../contexts/ThemeContext';

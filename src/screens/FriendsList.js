@@ -95,7 +95,7 @@ const FriendsList = ({navigation}) => {
                 </View>
             </Animated.ScrollView>
             <View style={styles.floating_btn} >
-                <FloatingButton click={() => navigation.navigate('AddFriends')}>
+                <FloatingButton click={() => navigation.navigate('SearchFriends', {add: true})}>
                     <FontAwesome5 name="user-plus" size={24} color={colors.primary_text} />
                 </FloatingButton>
             </View>

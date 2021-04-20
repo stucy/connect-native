@@ -5,7 +5,7 @@ import { useTheme } from '../contexts/ThemeContext';
 
 import { FontAwesome5 } from '@expo/vector-icons';
 
-const Friend = ({image, name, click, add}) => {
+const Friend = ({image, name, click, add, addPress}) => {
 
     const {colors} = useTheme();
 
@@ -43,7 +43,7 @@ const Friend = ({image, name, click, add}) => {
                     <Text style={styles.name} >{name}</Text>
                 </View>
             </TouchableOpacity>
-            {add && <FontAwesome5 name="user-plus" size={24} color={colors.secondary_text} onPress={add}/>}
+            {add && <FontAwesome5 name="user-plus" size={24} color={colors.secondary_text} onPress={addPress}/>}
         </View>
         
 

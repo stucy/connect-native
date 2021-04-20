@@ -6,6 +6,8 @@ import Message from '../components/Message';
 
 import { useTheme } from '../contexts/ThemeContext';
 
+import { Ionicons } from '@expo/vector-icons';
+
 const ChatsList = ({navigation}) => {
     const [messages, setMessages] = useState([
         {id: '2', image: '../assets/default.png', name: 'Ники П.', message: 'Здр кп... кога ще играем майнкрафт', time: '11:47'},
@@ -59,6 +61,11 @@ const ChatsList = ({navigation}) => {
             borderTopRightRadius: 40,
             padding: 10,
             paddingTop: 30,
+        },
+        search: {
+            position: 'absolute',
+            top: 20,
+            left: 20,
         }
     });
 
@@ -75,6 +82,7 @@ const ChatsList = ({navigation}) => {
                 onScroll={Animated.event([ { nativeEvent: { contentOffset: { y: animateY } } } ])}>
 
                 <Animated.View style={[styles.heading_container, {transform:[{translateY: headerY + 50}]}]}>
+                    <Ionicons style={styles.search} name="search" size={35} color={colors.primary_text} onPress={() => navigation.navigate('SearchFriends', {add: false})}/>
                     <TouchableWithoutFeedback onPress={() => navigation.navigate('Profile')}>
                         <Image style={styles.avatar} source={require('../assets/default.png')} />
                     </TouchableWithoutFeedback>

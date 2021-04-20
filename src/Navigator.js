@@ -1,7 +1,7 @@
 import React from 'react';
 import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { createStackNavigator, TransitionPresets } from 'react-navigation-stack';
-import { createBottomTabNavigator, createMaterialTopTabNavigator } from 'react-navigation-tabs';
+import { createMaterialTopTabNavigator } from 'react-navigation-tabs';
 
 import {darkColors} from './styles/colorThemes';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -15,7 +15,7 @@ import ChatSettings from './screens/ChatSettings';
 import FriendsList from './screens/FriendsList';
 import Profile from './screens/Profile';
 import ChangePass from './screens/ChangePass';
-import AddFriends from './screens/AddFriends';
+import SearchFriends from './screens/SearchFriends';
 
 const defaultStackOptions = {
     defaultNavigationOptions: {
@@ -105,8 +105,8 @@ const chatScreens = {
     ChangePass: {
         screen: ChangePass
     },
-    AddFriends: {
-        screen: AddFriends,
+    SearchFriends: {
+        screen: SearchFriends,
         navigationOptions: {
             headerShown: false
         }

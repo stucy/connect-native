@@ -7,7 +7,7 @@ import { useTheme } from '../contexts/ThemeContext';
 
 import Friend from '../components/Friend';
 
-const AddFriends = ({navigation}) => {  
+const SearchFriends = ({navigation}) => {  
     const [friends, setFriends] = useState([
         {id: '1', image: '', name: 'Стоян Г.'},
         {id: '2', image: '', name: 'Ники П.'},
@@ -22,6 +22,8 @@ const AddFriends = ({navigation}) => {
     ]);  
     const {colors} = useTheme();
 
+    const add = navigation.state.params.add;
+
     const styles = StyleSheet.create({
         container: {
           flex: 1,
@@ -33,7 +35,7 @@ const AddFriends = ({navigation}) => {
         }
     });
 
-    const renderFriends = ({item}) => <Friend {...item} key={item.id} click={() => navigation.goBack()} add={() => navigation.goBack()}/>;
+    const renderFriends = ({item}) => <Friend {...item} key={item.id} click={() => navigation.goBack()} add={add} addPress={add ? () => console.log('a') : () => console.log('b')}/>;
 
     return (
         <View style={styles.container}>
@@ -53,4 +55,4 @@ const AddFriends = ({navigation}) => {
 }
 
 
-export default AddFriends;
+export default SearchFriends;
